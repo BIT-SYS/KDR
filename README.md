@@ -19,6 +19,6 @@ List of Linux kernel data races found in recent 5 years
     <tr><td>kernel module<td>IO
     <tr><td>date<td>2013/7/3
     <tr><td>pattern<td>use before initialization
-    <tr><td>interleaving <td>![d50235b7bc3ee0a0427984d763ea7534149531b4](https://cloud.githubusercontent.com/assets/4531815/8325292/c77a173e-1a8a-11e5-9ddd-7f7b8a3ac0a5.png)
+    <tr><td>interleaving <td><image src="https://cloud.githubusercontent.com/assets/4531815/8325292/c77a173e-1a8a-11e5-9ddd-7f7b8a3ac0a5.png">
 </table>
-
+![d50235b7bc3ee0a0427984d763ea7534149531b4](https://cloud.githubusercontent.com/assets/4531815/8325292/c77a173e-1a8a-11e5-9ddd-7f7b8a3ac0a5.png)
