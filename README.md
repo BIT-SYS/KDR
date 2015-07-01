@@ -2,8 +2,10 @@
 List of Linux kernel data races found in recent 5 years
 <br>
 <h2>References:</h2>
-<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/"> Kernel.org git repositories </a>
-
+<table>
+<tr><td>
+[1]<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/"> Kernel.org git repositories </a>
+</table>
 <table>
     <tr><td>commit id <td>d50235b7bc3ee0a0427984d763ea7534149531b4
     <tr><td>kernel version<td>v3.10.8
