@@ -3,8 +3,11 @@ List of Linux kernel data races found in recent 5 years
 <br>
 <h2>References:</h2>
 <table>
-<tr width="600px"><td>
+<tr><td>
 [1]<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/"> Kernel.org git repositories </a>
+<tr><td>
+[2]<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/"> Kernel.org git repositories </a>
+
 </table>
 
 <table>
