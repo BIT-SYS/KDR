@@ -12,7 +12,7 @@ List of Linux kernel data races found in recent 5 years
 
 <table>
     <tr> <th> list                      <th> source          <th> module         <th> version       <th> id      
-    <tr> <td> [<a href="#c1">1</a>]     <td> ChangeLog      <td> IO         <td> 3.10.8     
+    <tr background="red";> <td> [<a href="#c1">1</a>]     <td> ChangeLog      <td> IO         <td> 3.10.8     
          <td> <a href="#c1">d50235b7bc3ee0a0427984d763ea7534149531b4</a>   
 </table>
 
