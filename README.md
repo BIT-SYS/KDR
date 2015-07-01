@@ -8,8 +8,8 @@ List of Linux kernel data races found in recent 5 years
 </table>
 
 <table>
-    <tr> <td> list <td> source      <td> id                                         <td> link
-    <tr> <td> [1]  <td> ChangeLog   <td> d50235b7bc3ee0a0427984d763ea7534149531b4   <td> <a href="#c1"> GOTO </a> 
+    <tr> <td> list <td> source      <td> module     <td> version    <td> id                                         
+    <tr> <td> [1]  <td> ChangeLog   <td> IO         <td> 3.10.8     <td> d50235b7bc3ee0a0427984d763ea7534149531b4   
 </table>
 
 <table>
