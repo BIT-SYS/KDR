@@ -14,6 +14,17 @@ List of Linux kernel data races found in recent 5 years
     <tr> <th> list                      <th> source          <th> module         <th> version       <th> id     <th> status   
     <tr background="red";> <td> [<a href="#c1">1</a>]     <td> ChangeLog      <td> IO         <td> 3.10.8     
          <td> <a href="#c1">d50235b7bc3ee0a0427984d763ea7534149531b4</a>    <td> Yes
+    <tr> <td> [<a href="#c2">2</a>]     <td> ChangeLog      <td> Driver         <td> 3.0.38     
+         <td> <a href="#c2">8265981bb439f3ecc5356fb877a6c2a6636ac88a</a>    <td> Yes
+    <tr> <td> [<a href="#c3">3</a>]     <td> ChangeLog      <td> Driver         <td> 3.0.59     
+         <td> <a href="#c3">ce73ec6db47af84d1466402781ae0872a9e7873c</a>    <td> Yes
+    <tr> <td> [<a href="#c4">4</a>]     <td> ChangeLog      <td> KVM         <td> 3.10.60     
+         <td> <a href="#c4">2febc839133280d5a5e8e1179c94ea674489dae2</a>    <td> Yes
+    <tr> <td> [<a href="#c5">5</a>]     <td> ChangeLog      <td> KVM         <td> 3.3.6     
+         <td> <a href="#c5">6dbf79e7164e9a86c1e466062c48498142ae6128</a>    <td> Yes
+    <tr> <td> [<a href="#c5">5</a>]     <td> ChangeLog      <td> Block         <td> 3.10.23    
+         <td> <a href="#c5">eb1c160b22655fd4ec44be732d6594fd1b1e44f4</a>    <td> Yes
+         
 </table>
 
 <table>
