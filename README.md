@@ -321,28 +321,37 @@ possible crash.
     <tr><th> <a name="c21" id="c21"></a> commit id <td>71b5707e119653039e6e95213f00479668c79b75
         <th>kernel version      <td>3.0.68   
     <tr><th>module      <td>Driver           <th>date                <td>2013/2/18
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">use after free   
+    <tr> <th> description <td colspan="3">In cgroup_exit() put_css_set_taskexit() is called without any lock,
+which might lead to accessing a freed cgroup.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8800211/8154ab66-2fe3-11e5-8f22-3e5ba0f18d6e.png">
     
       <tr><td colspan="4"> <h4> #22 </h4>
-    <tr><th> <a name="c22" id="c22"></a> commit id <td>71b5707e119653039e6e95213f00479668c79b75
-        <th>kernel version      <td>3.0.68   
-    <tr><th>module      <td>Driver           <th>date                <td>2013/2/18
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr><th> <a name="c22" id="c22"></a> commit id <td>532de3fc72adc2a6525c4d53c07bf81e1732083d
+        <th>kernel version      <td>3.12.14   
+    <tr><th>module      <td>Driver           <th>date                <td>2014/2/18
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">Currently, there's nothing preventing cgroup_enable_task_cg_lists()
+from missing set PF_EXITING and race against cgroup_exit().  Depending
+on the timing, cgroup_exit() may finish with the task still linked on
+css_set leading to list corruption.  Fix it by grabbing siglock in
+cgroup_enable_task_cg_lists() so that PF_EXITING is guaranteed to be
+visible.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
-    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8800211/8154ab66-2fe3-11e5-8f22-3e5ba0f18d6e.png">
+    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8815623/380996a4-304e-11e5-9a97-e394bbbfc1d6.png">
     
       <tr><td colspan="4"> <h4> #23 </h4>
     <tr><th> <a name="c23" id="c23"></a> commit id <td>c291ee622165cb2c8d4e7af63fffd499354a23be
         <th>kernel version      <td>3.12.37   
     <tr><th>module      <td>Driver           <th>date                <td>2014/12/13
     <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th> description <td colspan="3">Since the rework of the sparse interrupt code to actually free the
+unused interrupt descriptors there exists a race between the /proc
+interfaces to the irq subsystem and the code which frees the interrupt
+descriptor.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8800220/8c970aaa-2fe3-11e5-9040-6cd6358d770b.png">
@@ -351,21 +360,25 @@ possible crash.
     <tr><th> <a name="c24" id="c24"></a> commit id <td>b72c186999e689cb0b055ab1c7b3cd8fffbeb5ed
         <th>kernel version      <td>3.14.41   
     <tr><th>module      <td>Driver           <th>date                <td>2015/4/17
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">use after free   
+    <tr> <th> description <td colspan="3">ptrace_resume() is called when the tracee is still __TASK_TRACED.  We set
+tracee->exit_code and then wake_up_state() changes tracee->state.  If the
+tracer's sub-thread does wait() in between, task_stopped_code(ptrace => T)
+wrongly looks like another report from tracee.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8800224/97412a6c-2fe3-11e5-942e-7dd4f0b1709a.png">
     
       <tr><td colspan="4"> <h4> #25 </h4>
-    <tr><th> <a name="c25" id="c25"></a> commit id <td>b72c186999e689cb0b055ab1c7b3cd8fffbeb5ed
-        <th>kernel version      <td>3.14.41   
-    <tr><th>module      <td>Driver           <th>date                <td>2015/4/17
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr><th> <a name="c25" id="c25"></a> commit id <td>91b57191cfd152c02ded0745250167d0263084f8
+        <th>kernel version      <td>3.12.36   
+    <tr><th>module      <td>Driver           <th>date                <td>2014/12/3
+    <tr> <th>pattern             <td colspan="3">access with improper synchronization   
+    <tr> <th> description <td colspan="3">In some android devices, there will be a "divide by zero" exception.
+vmpr->scanned could be zero before spin_lock(&vmpr->sr_lock).
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
-    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8800224/97412a6c-2fe3-11e5-942e-7dd4f0b1709a.png">
+    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8800265/e9c924ce-2fe3-11e5-961e-68d4585cf701.png">
     
        <tr><td colspan="4"> <h4> #26 </h4>
     <tr><th> <a name="c26" id="c26"></a> commit id <td>1362f4ea20fa63688ba6026e586d9746ff13a846
