@@ -11,7 +11,7 @@ List of Linux kernel data races found in recent 5 years
 </table>
 
 <table>
-    <tr> <th> list                      <th> source          <th> module         <th> version       <th> id     <th> date <th>fixed
+    <tr> <th> list                      <th> source          <th> module         <th> version       <th> id     <th> date <th>status
 
 <tr><td>[<a href='#c1'>1</a>]<td>ChangeLog<td>ACPI<td>3.1<td><a href='https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=9c921c22a7f33397a6774d7fa076db9b6a0fd669'>9c921c22a7f33397a6774d7fa076db9b6a0fd669</a><td>2011/7/14<td>Yes
 <tr><td>[<a href='#c2'>2</a>]<td>ChangeLog<td>ACPI<td>3.1<td><a href='https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=69d94ec6d83d84044252d9ba03f6a8970816e350'>69d94ec6d83d84044252d9ba03f6a8970816e350</a><td>2011/8/6<td>Yes
