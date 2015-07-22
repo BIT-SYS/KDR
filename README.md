@@ -44,7 +44,9 @@ List of Linux kernel data races found in recent 5 years
 <tr> <td> [<a href="#c23">23</a>]  	<td> ChangeLog 	<td> Process Management 	<td> 3.12.37 	<td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=c291ee622165cb2c8d4e7af63fffd499354a23be">c291ee622165cb2c8d4e7af63fffd499354a23be 	<td> Yes 
 <tr> <td> [<a href="#c24">24</a>]  	<td> ChangeLog 	<td>Process Management <td> 3.14.41 	<td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=b72c186999e689cb0b055ab1c7b3cd8fffbeb5ed">b72c186999e689cb0b055ab1c7b3cd8fffbeb5ed 	<td> Yes 
 <tr> <td> [<a href="#c25">25</a>]  <td> ChangeLog 	<td> Memory Management  	<td> 3.12.36 	<td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=91b57191cfd152c02ded0745250167d0263084f8">91b57191cfd152c02ded0745250167d0263084f8 	<td> Yes 	
-         
+<tr> <td> [<a href="#c26">26</a>]  <td> ChangeLog 	<td> File System  	<td> 3.10.33 	<td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=1362f4ea20fa63688ba6026e586d9746ff13a846
+">1362f4ea20fa63688ba6026e586d9746ff13a846
+ 	<td> Yes          
 </table>
 
 <table>
@@ -298,4 +300,54 @@ List of Linux kernel data races found in recent 5 years
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8800224/97412a6c-2fe3-11e5-942e-7dd4f0b1709a.png">
+    
+       <tr><td colspan="4"> <h4> #26 </h4>
+    <tr><th> <a name="c26" id="c26"></a> commit id <td>1362f4ea20fa63688ba6026e586d9746ff13a846
+        <th>kernel version      <td>3.14.41   
+    <tr><th>module      <td>File System           <th>date                <td>2014/2/20
+    <tr> <th>pattern             <td colspan="3">use before initialization   
+    <tr> <th> description <td colspan="3">
+    <tr> <th> reproduce   <td colspan="3">
+    <tr><th>interleaving 
+    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8828786/88d05690-30c6-11e5-96e8-2699432e18d7.png">
+    
+       <tr><td colspan="4"> <h4> #27 </h4>
+    <tr><th> <a name="c27" id="c27"></a> commit id <td>bd9eb7fbe69111ea0ff1f999ef4a5f26d223d1d5
+        <th>kernel version      <td>3.7.2   
+    <tr><th>module      <td>Drivers           <th>date                <td>2012/11/14
+    <tr> <th>pattern             <td colspan="3">use before initialization   
+    <tr> <th> description <td colspan="3">
+    <tr> <th> reproduce   <td colspan="3">
+    <tr><th>interleaving 
+    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8828812/9d6061e0-30c6-11e5-9a77-d8e4639e3b82.png">
+    
+       <tr><td colspan="4"> <h4> #28 </h4>
+    <tr><th> <a name="c28" id="c28"></a> commit id <td>a399b29dfbaaaf91162b2dc5a5875dd51bbfa2a1
+        <th>kernel version      <td>3.10.21   
+    <tr><th>module      <td>Process Management           <th>date                <td>2013/11/22
+    <tr> <th>pattern             <td colspan="3">use before initialization   
+    <tr> <th> description <td colspan="3">
+    <tr> <th> reproduce   <td colspan="3">
+    <tr><th>interleaving 
+    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8828820/a5c221ca-30c6-11e5-974d-0691c3ca6dd8.png">
+    
+       <tr><td colspan="4"> <h4> #29 </h4>
+    <tr><th> <a name="c29" id="c29"></a> commit id <td>c6c15e1ed303ffc47e696ea1c9a9df1761c1f603
+        <th>kernel version      <td>3.10.62   
+    <tr><th>module      <td>File System           <th>date                <td>2014/11/19
+    <tr> <th>pattern             <td colspan="3">use before initialization   
+    <tr> <th> description <td colspan="3">
+    <tr> <th> reproduce   <td colspan="3">
+    <tr><th>interleaving 
+    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8828832/b14ef978-30c6-11e5-8763-dba01d081101.png">
+    
+       <tr><td colspan="4"> <h4> #30 </h4>
+    <tr><th> <a name="c30" id="c30"></a> commit id <td>30a6b8031fe14031ab27c1fa3483cb9780e7f63c
+        <th>kernel version      <td>3.17.3   
+    <tr><th>module      <td>Others          <th>date                <td>2014/10/26
+    <tr> <th>pattern             <td colspan="3">use before initialization   
+    <tr> <th> description <td colspan="3">
+    <tr> <th> reproduce   <td colspan="3">
+    <tr><th>interleaving 
+    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8828843/bc072dcc-30c6-11e5-80f3-7c14f5367e8c.png">
 </table>
