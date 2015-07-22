@@ -4,9 +4,9 @@ List of Linux kernel data races found in recent 5 years
 <h2>References:</h2>
 <table>
 <tr><td>
-[1]<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/"> Kernel.org git repositories </a>
+[1]<a href="https://bugzilla.kernel.org">Kernel Bug Tracker</a>
 <tr><td>
-[2]<a href="https://bugzilla.kernel.org">Kernel Bug Tracker</a>
+[2]<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/"> Kernel.org git repositories </a>
 
 </table>
 
