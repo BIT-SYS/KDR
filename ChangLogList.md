@@ -487,6 +487,6 @@ List of Linux kernel data races found in recent 5 years
 <tr><td>[<a href='#c472'>472</a>]<td>ChangeLog<td>Others<td>3.10.28<td><a href='https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=3dc91d4338d698ce77832985f9cb183d8eeaf6be'>3dc91d4338d698ce77832985f9cb183d8eeaf6be</a><td>2014/1/12<td>Resolved
 <tr><td>[<a href='#c473'>473</a>]<td>ChangeLog<td>Others<td>3.10.60<td><a href='https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=923190d32de4428afbea5e5773be86bea60a9925'>923190d32de4428afbea5e5773be86bea60a9925</a><td>2014/10/15<td>Resolved
 <tr><td>[<a href='#c474'>474</a>]<td>ChangeLog<td>Others<td>3.0.17<td><a href='https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=68f760945cb704f4a9d0ae7c4abc9e41ca30aa91'>68f760945cb704f4a9d0ae7c4abc9e41ca30aa91</a><td>—<td>Resolved
-<tr><td>[<a href='#c475'>475</a>]<td>ChangeLog<td>Others<td>3.2.1<td><a href='https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=—'>—</a><td>—<td>Resolved
-<tr><td>[<a href='#c476'>476</a>]<td>ChangeLog<td>Others<td>3.2.57<td><a href='https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=—'>—</a><td>—<td>Resolved
-<tr><td>[<a href='#c477'>477</a>]<td>ChangeLog<td>Others<td>3.4.26<td><a href='https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=—'>—</a><td>—<td>Resolved
+<tr><td>[<a href='#c475'>475</a>]<td>ChangeLog<td>Others<td>3.2.1<td><a href='#'>—</a><td>—<td>Resolved
+<tr><td>[<a href='#c476'>476</a>]<td>ChangeLog<td>Others<td>3.2.57<td><a href='#'>—</a><td>—<td>Resolved
+<tr><td>[<a href='#c477'>477</a>]<td>ChangeLog<td>Others<td>3.4.26<td><a href='#'>—</a><td>—<td>Resolved
