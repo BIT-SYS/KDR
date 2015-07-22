@@ -272,8 +272,22 @@ jbd2_journal_dirty_metadata() shouldn't return error was triggered.
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795406/6d8fc63e-2fbf-11e5-8111-03aadf62a10f.png">
     
-     <tr><td colspan="4"> <h4> #18 </h4>
-    <tr><th> <a name="c18" id="c18"></a> commit id <td>06bed7d18c2c07b3e3eeadf4bd357f6e806618cc
+      <tr><td colspan="4"> <h4> #18 </h4>
+    <tr><th> <a name="c18" id="c18"></a> commit id <td>794446c6946513c684d448205fbd76fa35f38b72
+        <th>kernel version      <td>3.2.45   
+    <tr><th>module      <td>Driver           <th>date                <td>2013/4/4
+    <tr> <th>pattern             <td colspan="3">use after free   
+    <tr> <th> description <td colspan="3">In order to demonstrace this issue one should mount ext4 with mount -o
+discard option on SSD disk.  This makes callback longer and race
+window becomes wider.
+In order to fix this we should mark transaction as finished only after
+callbacks have completed
+    <tr> <th> reproduce   <td colspan="3">
+    <tr><th>interleaving 
+    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8800613/d683fabc-2fe6-11e5-8ed5-644cc9633523.png">
+    
+     <tr><td colspan="4"> <h4> #19 </h4>
+    <tr><th> <a name="c19" id="c19"></a> commit id <td>06bed7d18c2c07b3e3eeadf4bd357f6e806618cc
         <th>kernel version      <td>3.10.39   
     <tr><th>module      <td>Driver           <th>date                <td>2014/4/7
     <tr> <th>pattern             <td colspan="3">use before initialization   
@@ -285,26 +299,23 @@ is the case.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://github.com/BIT-SYS/KDR/blob/master/Images/06bed7d18c2c07b3e3eeadf4bd357f6e806618cc.png">
-    
-     <tr><td colspan="4"> <h4> #19 </h4>
-    <tr><th> <a name="c19" id="c19"></a> commit id <td>06bed7d18c2c07b3e3eeadf4bd357f6e806618cc
-        <th>kernel version      <td>3.10.66   
-    <tr><th>module      <td>Driver           <th>date                <td>2015/1/6
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
-    <tr> <th> reproduce   <td colspan="3">
-    <tr><th>interleaving 
-    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795417/7d2657b6-2fbf-11e5-9e70-85ae106ec1d9.png">
-    
+
+
      <tr><td colspan="4"> <h4> #20 </h4>
-    <tr><th> <a name="c20" id="c20"></a> commit id <td>06bed7d18c2c07b3e3eeadf4bd357f6e806618cc
-        <th>kernel version      <td>3.10.66   
-    <tr><th>module      <td>Driver           <th>date                <td>2015/1/6
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr><th> <a name="c20" id="c20"></a> commit id <td>1c327d962fc420aea046c16215a552710bde8231
+        <th>kernel version      <td>3.0.88   
+    <tr><th>module      <td>Driver           <th>date                <td>2013/7/11
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">In nlmsvc_retry_blocked, the check that the list is non-empty and acquiring
+the pointer of the first entry is unprotected by any lock.  This allows a rare
+race condition when there is only one entry on the list.  A function such as
+nlmsvc_grant_callback() can be called, which will temporarily remove the entry
+from the list.  Between the list_empty() and list_entry(),the list may become
+empty, causing an invalid pointer to be used as an nlm_block, leading to a
+possible crash.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
-    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795417/7d2657b6-2fbf-11e5-9e70-85ae106ec1d9.png">
+    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8815619/30e55002-304e-11e5-8b41-b7c514ed05b1.png">
     
      <tr><td colspan="4"> <h4> #21 </h4>
     <tr><th> <a name="c21" id="c21"></a> commit id <td>71b5707e119653039e6e95213f00479668c79b75
