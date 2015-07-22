@@ -6,7 +6,7 @@ List of Linux kernel data races found in recent 5 years
 <tr><td>
 [1]<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/"> Kernel.org git repositories </a>
 <tr><td>
-[2]<a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/"> Kernel.org git repositories </a>
+[2]<a href="https://www.kernel.org">The Linux Kernel Archives</a>
 
 </table>
 
@@ -61,8 +61,13 @@ List of Linux kernel data races found in recent 5 years
         <th>Version      <td>3.10.8    
     <tr><th>Module      <td>IO           <th>Date                <td>2013/7/3
     <tr> <th>Pattern             <td colspan="3">use before initialization   
-    <tr> <th>Description <td colspan="3">
-    <tr> <th>Reproduce   <td colspan="3">
+    <tr> <th>Description <td colspan="3">There's a race between elevator switching and normal io operation.
+    Because the allocation of struct elevator_queue and struct elevator_data
+    don't in a atomic operation.So there are have chance to use NULL
+    ->elevator_data.
+    <tr> <th>Reproduce   <td colspan="3">Using the follow method can easy reproduce this bug
+    1:dd if=/dev/sdb of=/dev/null
+    2:while true;do echo noop > scheduler;echo deadline > scheduler;done
     <tr><th>Interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/4531815/8325292/c77a173e-1a8a-11e5-9ddd-7f7b8a3ac0a5.png">
     
@@ -70,8 +75,9 @@ List of Linux kernel data races found in recent 5 years
     <tr><th> <a name="c2" id="c2"></a> commit id <td>8265981bb439f3ecc5356fb877a6c2a6636ac88a
         <th>kernel version      <td>3.0.38    
     <tr><th>module      <td>IO           <th>date                <td>2012/7/13
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access with improper synchronization  
+    <tr> <th> description <td colspan="3">Checking for adc->ts_pend already claimed should be done with the
+lock held.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8777996/e5301c6c-2f2d-11e5-9c20-b5067b0ac989.png">
@@ -81,7 +87,11 @@ List of Linux kernel data races found in recent 5 years
         <th>kernel version      <td>3.0.38    
     <tr><th>module      <td>IO           <th>date                <td>2013/1/3
     <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th> description <td colspan="3">The locking in update_vsyscall_tz() is not only unnecessary because the vdso
+code copies the data unproteced in __kernel_gettimeofday() but also
+introduces a hard to reproduce race condition between update_vsyscall()
+and update_vsyscall_tz(), which causes user space process to loop
+forever in vdso code.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8778028/14832356-2f2e-11e5-8542-ed5b210cd26e.png">
@@ -90,8 +100,11 @@ List of Linux kernel data races found in recent 5 years
     <tr><th> <a name="c4" id="c4"></a> commit id <td>2febc839133280d5a5e8e1179c94ea674489dae2
         <th>kernel version      <td>3.10.60    
     <tr><th>module      <td>IO           <th>date                <td>2014/10/24
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">There's a race condition in the PIT emulation code in KVM.  In
+__kvm_migrate_pit_timer the pit_timer object is accessed without
+synchronization.  If the race condition occurs at the wrong time this
+can crash the host kernel.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8778034/247a667a-2f2e-11e5-9ef6-a831beb2591b.png">
@@ -100,8 +113,9 @@ List of Linux kernel data races found in recent 5 years
     <tr><th> <a name="c5" id="c5"></a> commit id <td>6dbf79e7164e9a86c1e466062c48498142ae6128
         <th>kernel version      <td>3.3.6    
     <tr><th>module      <td>IO           <th>date                <td>2012/3/8
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access with improper synchronization   
+    <tr> <th> description <td colspan="3">During protecting pages for dirty logging, other threads may also try
+to protect a page in mmu_sync_children() or kvm_mmu_get_page().
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8778041/2e47b568-2f2e-11e5-8cc8-83f16878dab1.png">
@@ -111,8 +125,9 @@ List of Linux kernel data races found in recent 5 years
     <tr><th> <a name="c6" id="c6"></a> commit id <td>eb1c160b22655fd4ec44be732d6594fd1b1e44f4
         <th>kernel version      <td>3.10.23    
     <tr><th>module      <td>IO           <th>date                <td>2013/11/8
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">The soft lockup below happens at the boot time of the system using dm
+multipath and the udev rules to switch scheduler.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795136/c391b9a0-2fbc-11e5-9960-ba8287a19a15.png">
@@ -121,8 +136,11 @@ List of Linux kernel data races found in recent 5 years
     <tr><th> <a name="c7" id="c7"></a> commit id <td>9c921c22a7f33397a6774d7fa076db9b6a0fd669
         <th>kernel version      <td>3.1   
     <tr><th>module      <td>IO           <th>date                <td>2011/7/14
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">Use battery->lock in sysfs_remove_battery() to make
+checking, removing, and clearing bat.dev atomic.
+This is necessary because sysfs_remove_battery() may
+be invoked concurrently from different paths.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795140/d09599a0-2fbc-11e5-940c-9e417a413bd0.png">
@@ -131,8 +149,11 @@ List of Linux kernel data races found in recent 5 years
     <tr><th> <a name="c8" id="c8"></a> commit id <td>7456caae37396fc1bc6f8e9461d07664b8c2f280
         <th>kernel version      <td>3.1   
     <tr><th>module      <td>IO           <th>date                <td>2011/7/20
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">When a request is made, the card presence is checked and the request is
+queued. These two parts must be atomic with respect to card removal, or
+a card removal could be handled in between, and the new request wouldn't
+get cancelled until another card was inserted.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795143/d6550ee8-2fbc-11e5-98b0-2ee1b2db0db0.png">
@@ -141,8 +162,10 @@ List of Linux kernel data races found in recent 5 years
     <tr><th> <a name="c9" id="c9"></a> commit id <td>5dc2470c602da8851907ec18942cd876c3b4ecc1
         <th>kernel version      <td>3.0.11   
     <tr><th>module      <td>IO           <th>date                <td>2011/11/14
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">There's a race between the USB disconnect handler and the TTY close
+handler which may cause the acm object to be freed while it's still
+being used. 
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795150/e9cf161c-2fbc-11e5-8d17-53a45a4b7fcb.png">
@@ -151,8 +174,10 @@ List of Linux kernel data races found in recent 5 years
     <tr><th> <a name="c10" id="c10"></a> commit id <td>eea915bb0d1358755f151eaefb8208a2d5f3e10c
         <th>kernel version      <td>3.0.17   
     <tr><th>module      <td>Driver           <th>date                <td>2012/1/5
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">Its caused by the fact that firmware_loading_store has a case 0 in its
+switch statement that reads and writes the fw_priv->fw poniter without the
+protection of the fw_lock mutex. 
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795197/69d2aee6-2fbd-11e5-84f0-35d94945859a.png">
