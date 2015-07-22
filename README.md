@@ -46,7 +46,13 @@ List of Linux kernel data races found in recent 5 years
 <tr> <td> [<a href="#c25">25</a>]  <td> ChangeLog 	<td> Memory Management  	<td> 3.12.36 	<td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=91b57191cfd152c02ded0745250167d0263084f8">91b57191cfd152c02ded0745250167d0263084f8 	<td> Yes 	
 <tr> <td> [<a href="#c26">26</a>]  <td> ChangeLog 	<td> File System  	<td> 3.10.33 	<td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=1362f4ea20fa63688ba6026e586d9746ff13a846
 ">1362f4ea20fa63688ba6026e586d9746ff13a846
- 	<td> Yes          
+ 	<td> Yes     
+ 	<tr> <td> [<a href="#c27">27</a>]  	<td> ChangeLog 	<td> Drivers 	<td> 3.7.2  	<td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=bd9eb7fbe69111ea0ff1f999ef4a5f26d223d1d5">bd9eb7fbe69111ea0ff1f999ef4a5f26d223d1d5 	<td> Yes 
+<tr> <td> [<a href="#c28">28</a>]  	<td> ChangeLog 	<td>Process Management <td> 3.10.21 	<td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=a399b29dfbaaaf91162b2dc5a5875dd51bbfa2a1">a399b29dfbaaaf91162b2dc5a5875dd51bbfa2a1 	<td> Yes 
+<tr> <td> [<a href="#c29">29</a>]  <td> ChangeLog 	<td> File System  	<td> 3.10.62 	<td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=c6c15e1ed303ffc47e696ea1c9a9df1761c1f603">c6c15e1ed303ffc47e696ea1c9a9df1761c1f603 	<td> Yes 	
+<tr> <td> [<a href="#c30">30</a>]  <td> ChangeLog 	<td> Others  	<td> 3.17.3 	<td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=30a6b8031fe14031ab27c1fa3483cb9780e7f63c
+">30a6b8031fe14031ab27c1fa3483cb9780e7f63c
+ 	<td> Yes     
 </table>
 
 <table>
