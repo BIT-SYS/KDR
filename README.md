@@ -186,8 +186,11 @@ protection of the fw_lock mutex.
     <tr><th> <a name="c11" id="c11"></a> commit id <td>44e4360fa3384850d65dd36fb4e6e5f2f112709b
         <th>kernel version      <td>3.0.41   
     <tr><th>module      <td>Driver           <th>date                <td>2012/4/12
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">/proc/sys/kernel/random/boot_id can be read concurrently by userspace
+processes.  If two (or more) user-space processes concurrently read
+boot_id when sysctl_bootid is not yet assigned, a race can occur making
+boot_id differ between the reads. 
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795212/8f93c098-2fbd-11e5-88d6-1427c7cd6a10.png">
@@ -196,28 +199,36 @@ protection of the fw_lock mutex.
     <tr><th> <a name="c12" id="c12"></a> commit id <td>1eeeef153c02f5856ec109fa532eb5f31c39f85c
         <th>kernel version      <td>3.11.2   
     <tr><th>module      <td>Driver           <th>date                <td>2013/8/30
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">use after free   
+    <tr> <th> description <td colspan="3">The following race condition triggers here.
+causing an oops later when walking pending_list after the firmware has
+been released.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795216/a3df670a-2fbd-11e5-85dd-ec9ed62b8db4.png">
     
      <tr><td colspan="4"> <h4> #13 </h4>
-    <tr><th> <a name="c13" id="c13"></a> commit id <td>1eeeef153c02f5856ec109fa532eb5f31c39f85c
-        <th>kernel version      <td>3.11.2   
-    <tr><th>module      <td>Driver           <th>date                <td>2013/8/30
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr><th> <a name="c13" id="c13"></a> commit id <td>ef0899410ff630b2e75306da49996dbbfa318165
+        <th>kernel version      <td>3.10.34  
+    <tr><th>module      <td>Driver           <th>date                <td>2013/11/8
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">The patch did not convert the s390 dasd device driver which is the only
+device driver which also calls elevator_init(). So add the missing locking.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
-    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795216/a3df670a-2fbd-11e5-85dd-ec9ed62b8db4.png">
+    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8800605/ca47906a-2fe6-11e5-84a3-282735902e56.png">
     
      <tr><td colspan="4"> <h4> #14 </h4>
     <tr><th> <a name="c14" id="c14"></a> commit id <td>b869ccfab1e324507fa3596e3e1308444fb68227
         <th>kernel version      <td>3.10.23   
     <tr><th>module      <td>Driver           <th>date                <td>2013/11/14
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">This patch fixes two race conditions between bond_store_updelay/downdelay
+and bond_store_miimon which could lead to division by zero as miimon can
+be set to 0 while either updelay/downdelay are being set and thus miss the
+zero check in the beginning, the zero div happens because updelay/downdelay
+are stored as new_value / bond->params.miimon. Use rtnl to synchronize with
+miimon setting.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795372/341b7b96-2fbf-11e5-9dee-6cc5a981a969.png">
@@ -226,8 +237,10 @@ protection of the fw_lock mutex.
     <tr><th> <a name="c15" id="c15"></a> commit id <td>21f8aaee0c62708654988ce092838aa7df4d25d8
         <th>kernel version      <td>3.10.42   
     <tr><th>module      <td>Driver           <th>date                <td>2014/2/20
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">We check tid->sched without a lock taken on ath_tx_aggr_sleep(). That
+is race condition which can result of doing list_del(&tid->list) twice
+(second time with poisoned list node) and cause crash like shown below:
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795382/3cc4a510-2fbf-11e5-8f63-d3285b5665de.png">
@@ -236,8 +249,14 @@ protection of the fw_lock mutex.
     <tr><th> <a name="c16" id="c16"></a> commit id <td>d9e93c08d8d985e5ef89436ebc9f4aad7e31559f
         <th>kernel version      <td>3.10.46   
     <tr><th>module      <td>Driver           <th>date                <td>2014/5/27
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access with improper synchronization   
+    <tr> <th> description <td colspan="3">We find a race between write and resume. usb_wwan_resume run play_delayed()
+and spin_unlock, but intfdata->suspended still is not set to zero.
+At this time usb_wwan_write is called and anchor the urb to delay
+list. Then resume keep running but the delayed urb have no chance
+to be commit until next resume. If the time of next resume is far
+away, tty will be blocked in tty_wait_until_sent during time. The
+race also can lead to writes being reordered.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795400/5ff7d1e2-2fbf-11e5-9266-d7c32fafc290.png">
@@ -246,8 +265,9 @@ protection of the fw_lock mutex.
     <tr><th> <a name="c17" id="c17"></a> commit id <td>ec4cb1aa2b7bae18dd8164f2e9c7c51abcf61280
         <th>kernel version      <td>3.10.39   
     <tr><th>module      <td>Driver           <th>date                <td>2014/4/7
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access with improper synchronization   
+    <tr> <th> description <td colspan="3">When heavily exercising xattr code the assertion that
+jbd2_journal_dirty_metadata() shouldn't return error was triggered.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8795406/6d8fc63e-2fbf-11e5-8111-03aadf62a10f.png">
@@ -257,7 +277,11 @@ protection of the fw_lock mutex.
         <th>kernel version      <td>3.10.39   
     <tr><th>module      <td>Driver           <th>date                <td>2014/4/7
     <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th> description <td colspan="3">This commit fixes a race whereby nlmclnt_init() first starts the lockd
+daemon, and then calls nlm_bind_host() with the expectation that
+nlmsvc_timeout has already been initialised. Unfortunately, there is no
+no synchronisation between lockd() and lockd_up() to guarantee that this
+is the case.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://github.com/BIT-SYS/KDR/blob/master/Images/06bed7d18c2c07b3e3eeadf4bd357f6e806618cc.png">
