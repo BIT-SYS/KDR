@@ -384,8 +384,9 @@ vmpr->scanned could be zero before spin_lock(&vmpr->sr_lock).
     <tr><th> <a name="c26" id="c26"></a> commit id <td>1362f4ea20fa63688ba6026e586d9746ff13a846
         <th>kernel version      <td>3.14.41   
     <tr><th>module      <td>File System           <th>date                <td>2014/2/20
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">use after free   
+    <tr> <th> description <td colspan="3">Currently last dqput() can race with dquot_scan_active() causing it to
+call callback for an already deactivated dquot.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8828786/88d05690-30c6-11e5-96e8-2699432e18d7.png">
@@ -394,8 +395,9 @@ vmpr->scanned could be zero before spin_lock(&vmpr->sr_lock).
     <tr><th> <a name="c27" id="c27"></a> commit id <td>bd9eb7fbe69111ea0ff1f999ef4a5f26d223d1d5
         <th>kernel version      <td>3.7.2   
     <tr><th>module      <td>Drivers           <th>date                <td>2012/11/14
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">use after free   
+    <tr> <th> description <td colspan="3">There is one race that both request_firmware() with the same
+firmware name.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8828812/9d6061e0-30c6-11e5-9a77-d8e4639e3b82.png">
@@ -404,8 +406,9 @@ vmpr->scanned could be zero before spin_lock(&vmpr->sr_lock).
     <tr><th> <a name="c28" id="c28"></a> commit id <td>a399b29dfbaaaf91162b2dc5a5875dd51bbfa2a1
         <th>kernel version      <td>3.10.21   
     <tr><th>module      <td>Process Management           <th>date                <td>2013/11/22
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">use after free   
+    <tr> <th> description <td colspan="3">When IPC_RMID races with other shm operations there's potential for
+use-after-free of the shm object's associated file (shm_file).
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8828820/a5c221ca-30c6-11e5-974d-0691c3ca6dd8.png">
@@ -414,8 +417,10 @@ vmpr->scanned could be zero before spin_lock(&vmpr->sr_lock).
     <tr><th> <a name="c29" id="c29"></a> commit id <td>c6c15e1ed303ffc47e696ea1c9a9df1761c1f603
         <th>kernel version      <td>3.10.62   
     <tr><th>module      <td>File System           <th>date                <td>2014/11/19
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access without synchronization   
+    <tr> <th> description <td colspan="3">The currect code for nfsd41_cb_get_slot() and nfsd4_cb_done() has no
+locking in order to guarantee atomicity, and so allows for races of
+the form.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8828832/b14ef978-30c6-11e5-8763-dba01d081101.png">
@@ -424,8 +429,11 @@ vmpr->scanned could be zero before spin_lock(&vmpr->sr_lock).
     <tr><th> <a name="c30" id="c30"></a> commit id <td>30a6b8031fe14031ab27c1fa3483cb9780e7f63c
         <th>kernel version      <td>3.17.3   
     <tr><th>module      <td>Others          <th>date                <td>2014/10/26
-    <tr> <th>pattern             <td colspan="3">use before initialization   
-    <tr> <th> description <td colspan="3">
+    <tr> <th>pattern             <td colspan="3">access with improper synchronization   
+    <tr> <th> description <td colspan="3">free_pi_state and exit_pi_state_list both clean up futex_pi_state's.
+exit_pi_state_list takes the hb lock first, and most callers of
+free_pi_state do too. requeue_pi doesn't, which means free_pi_state
+can free the pi_state out from under exit_pi_state_list.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8828843/bc072dcc-30c6-11e5-80f3-7c14f5367e8c.png">
