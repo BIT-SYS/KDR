@@ -86,7 +86,7 @@ lock held.
     <tr><th> <a name="c3" id="c3"></a> commit id <td>ce73ec6db47af84d1466402781ae0872a9e7873c
         <th>kernel version      <td>3.0.38    
     <tr><th>module      <td>IO           <th>date                <td>2013/1/3
-    <tr> <th>pattern             <td colspan="3">use before initialization   
+    <tr> <th>pattern             <td colspan="3">access with improper synchronization   
     <tr> <th> description <td colspan="3">The locking in update_vsyscall_tz() is not only unnecessary because the vdso
 code copies the data unproteced in __kernel_gettimeofday() but also
 introduces a hard to reproduce race condition between update_vsyscall()
