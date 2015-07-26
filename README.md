@@ -22,7 +22,7 @@ List of Linux kernel data races found in recent 5 years
          <td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=2febc839133280d5a5e8e1179c94ea674489dae2">2febc839133280d5a5e8e1179c94ea674489dae2</a>    <td> Resolved
     <tr> <td> [<a href="#c5">5</a>]     <td> ChangeLog      <td> KVM         <td> 3.3.6     
          <td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=6dbf79e7164e9a86c1e466062c48498142ae6128">6dbf79e7164e9a86c1e466062c48498142ae6128</a>    <td> Resolved
-    <tr> <td> [<a href="#c6">6</a>]     <td> ChangeLog      <td> Block         <td> 3.10.23    
+    <tr> <td> [<a href="#c6">6</a>]     <td> ChangeLog      <td> IO         <td> 3.10.23    
          <td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=eb1c160b22655fd4ec44be732d6594fd1b1e44f4">eb1c160b22655fd4ec44be732d6594fd1b1e44f4</a>    <td> Resolved
     <tr> <td> [<a href="#c7">7</a>]  	<td> ChangeLog 	<td> Driver             	<td> 3.1     	<td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=9c921c22a7f33397a6774d7fa076db9b6a0fd669">9c921c22a7f33397a6774d7fa076db9b6a0fd669 	<td> Resolved 	
  <tr> <td> [<a href="#c8">8</a>]  	<td> ChangeLog 	<td> Driver             	<td> 3.1     	<td> <a href="https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=7456caae37396fc1bc6f8e9461d07664b8c2f280">7456caae37396fc1bc6f8e9461d07664b8c2f280 	<td> Resolved 	
@@ -74,7 +74,7 @@ List of Linux kernel data races found in recent 5 years
     <tr><td colspan="4"> <h4> #2 </h4>
     <tr><th> <a name="c2" id="c2"></a> commit id <td>8265981bb439f3ecc5356fb877a6c2a6636ac88a
         <th>kernel version      <td>3.0.38    
-    <tr><th>module      <td>IO           <th>date                <td>2012/7/13
+    <tr><th>module      <td>Driver           <th>date                <td>2012/7/13
     <tr> <th>pattern             <td colspan="3">access with improper synchronization  
     <tr> <th> description <td colspan="3">Checking for adc->ts_pend already claimed should be done with the
 lock held.
@@ -85,7 +85,7 @@ lock held.
     <tr><td colspan="4"> <h4> #3 </h4>
     <tr><th> <a name="c3" id="c3"></a> commit id <td>ce73ec6db47af84d1466402781ae0872a9e7873c
         <th>kernel version      <td>3.0.38    
-    <tr><th>module      <td>IO           <th>date                <td>2013/1/3
+    <tr><th>module      <td>Driver           <th>date                <td>2013/1/3
     <tr> <th>pattern             <td colspan="3">access with improper synchronization   
     <tr> <th> description <td colspan="3">The locking in update_vsyscall_tz() is not only unnecessary because the vdso
 code copies the data unproteced in __kernel_gettimeofday() but also
@@ -99,7 +99,7 @@ forever in vdso code.
      <tr><td colspan="4"> <h4> #4 </h4>
     <tr><th> <a name="c4" id="c4"></a> commit id <td>2febc839133280d5a5e8e1179c94ea674489dae2
         <th>kernel version      <td>3.10.60    
-    <tr><th>module      <td>IO           <th>date                <td>2014/10/24
+    <tr><th>module      <td>KVM           <th>date                <td>2014/10/24
     <tr> <th>pattern             <td colspan="3">access without synchronization   
     <tr> <th> description <td colspan="3">There's a race condition in the PIT emulation code in KVM.  In
 __kvm_migrate_pit_timer the pit_timer object is accessed without
@@ -112,7 +112,7 @@ can crash the host kernel.
      <tr><td colspan="4"> <h4> #5 </h4>
     <tr><th> <a name="c5" id="c5"></a> commit id <td>6dbf79e7164e9a86c1e466062c48498142ae6128
         <th>kernel version      <td>3.3.6    
-    <tr><th>module      <td>IO           <th>date                <td>2012/3/8
+    <tr><th>module      <td>KVM           <th>date                <td>2012/3/8
     <tr> <th>pattern             <td colspan="3">access with improper synchronization   
     <tr> <th> description <td colspan="3">During protecting pages for dirty logging, other threads may also try
 to protect a page in mmu_sync_children() or kvm_mmu_get_page().
@@ -135,7 +135,7 @@ multipath and the udev rules to switch scheduler.
      <tr><td colspan="4"> <h4> #7 </h4>
     <tr><th> <a name="c7" id="c7"></a> commit id <td>9c921c22a7f33397a6774d7fa076db9b6a0fd669
         <th>kernel version      <td>3.1   
-    <tr><th>module      <td>IO           <th>date                <td>2011/7/14
+    <tr><th>module      <td>Driver           <th>date                <td>2011/7/14
     <tr> <th>pattern             <td colspan="3">access without synchronization   
     <tr> <th> description <td colspan="3">Use battery->lock in sysfs_remove_battery() to make
 checking, removing, and clearing bat.dev atomic.
@@ -148,7 +148,7 @@ be invoked concurrently from different paths.
      <tr><td colspan="4"> <h4> #8 </h4>
     <tr><th> <a name="c8" id="c8"></a> commit id <td>7456caae37396fc1bc6f8e9461d07664b8c2f280
         <th>kernel version      <td>3.1   
-    <tr><th>module      <td>IO           <th>date                <td>2011/7/20
+    <tr><th>module      <td>Driver           <th>date                <td>2011/7/20
     <tr> <th>pattern             <td colspan="3">access without synchronization   
     <tr> <th> description <td colspan="3">When a request is made, the card presence is checked and the request is
 queued. These two parts must be atomic with respect to card removal, or
@@ -161,7 +161,7 @@ get cancelled until another card was inserted.
      <tr><td colspan="4"> <h4> #9 </h4>
     <tr><th> <a name="c9" id="c9"></a> commit id <td>5dc2470c602da8851907ec18942cd876c3b4ecc1
         <th>kernel version      <td>3.0.11   
-    <tr><th>module      <td>IO           <th>date                <td>2011/11/14
+    <tr><th>module      <td>Driver           <th>date                <td>2011/11/14
     <tr> <th>pattern             <td colspan="3">access without synchronization   
     <tr> <th> description <td colspan="3">There's a race between the USB disconnect handler and the TTY close
 handler which may cause the acm object to be freed while it's still
@@ -264,7 +264,7 @@ race also can lead to writes being reordered.
      <tr><td colspan="4"> <h4> #17 </h4>
     <tr><th> <a name="c17" id="c17"></a> commit id <td>ec4cb1aa2b7bae18dd8164f2e9c7c51abcf61280
         <th>kernel version      <td>3.10.39   
-    <tr><th>module      <td>Driver           <th>date                <td>2014/4/7
+    <tr><th>module      <td>File System           <th>date                <td>2014/4/7
     <tr> <th>pattern             <td colspan="3">access with improper synchronization   
     <tr> <th> description <td colspan="3">When heavily exercising xattr code the assertion that
 jbd2_journal_dirty_metadata() shouldn't return error was triggered.
@@ -275,7 +275,7 @@ jbd2_journal_dirty_metadata() shouldn't return error was triggered.
       <tr><td colspan="4"> <h4> #18 </h4>
     <tr><th> <a name="c18" id="c18"></a> commit id <td>794446c6946513c684d448205fbd76fa35f38b72
         <th>kernel version      <td>3.2.45   
-    <tr><th>module      <td>Driver           <th>date                <td>2013/4/4
+    <tr><th>module      <td>File System           <th>date                <td>2013/4/4
     <tr> <th>pattern             <td colspan="3">use after free   
     <tr> <th> description <td colspan="3">In order to demonstrace this issue one should mount ext4 with mount -o
 discard option on SSD disk.  This makes callback longer and race
@@ -289,7 +289,7 @@ callbacks have completed
      <tr><td colspan="4"> <h4> #19 </h4>
     <tr><th> <a name="c19" id="c19"></a> commit id <td>06bed7d18c2c07b3e3eeadf4bd357f6e806618cc
         <th>kernel version      <td>3.10.39   
-    <tr><th>module      <td>Driver           <th>date                <td>2014/4/7
+    <tr><th>module      <td>File System           <th>date                <td>2014/4/7
     <tr> <th>pattern             <td colspan="3">use before initialization   
     <tr> <th> description <td colspan="3">This commit fixes a race whereby nlmclnt_init() first starts the lockd
 daemon, and then calls nlm_bind_host() with the expectation that
@@ -304,7 +304,7 @@ is the case.
      <tr><td colspan="4"> <h4> #20 </h4>
     <tr><th> <a name="c20" id="c20"></a> commit id <td>1c327d962fc420aea046c16215a552710bde8231
         <th>kernel version      <td>3.0.88   
-    <tr><th>module      <td>Driver           <th>date                <td>2013/7/11
+    <tr><th>module      <td>File System           <th>date                <td>2013/7/11
     <tr> <th>pattern             <td colspan="3">access without synchronization   
     <tr> <th> description <td colspan="3">In nlmsvc_retry_blocked, the check that the list is non-empty and acquiring
 the pointer of the first entry is unprotected by any lock.  This allows a rare
@@ -320,7 +320,7 @@ possible crash.
      <tr><td colspan="4"> <h4> #21 </h4>
     <tr><th> <a name="c21" id="c21"></a> commit id <td>71b5707e119653039e6e95213f00479668c79b75
         <th>kernel version      <td>3.0.68   
-    <tr><th>module      <td>Driver           <th>date                <td>2013/2/18
+    <tr><th>module      <td>Process Management           <th>date                <td>2013/2/18
     <tr> <th>pattern             <td colspan="3">use after free   
     <tr> <th> description <td colspan="3">In cgroup_exit() put_css_set_taskexit() is called without any lock,
 which might lead to accessing a freed cgroup.
@@ -331,7 +331,7 @@ which might lead to accessing a freed cgroup.
       <tr><td colspan="4"> <h4> #22 </h4>
     <tr><th> <a name="c22" id="c22"></a> commit id <td>532de3fc72adc2a6525c4d53c07bf81e1732083d
         <th>kernel version      <td>3.12.14   
-    <tr><th>module      <td>Driver           <th>date                <td>2014/2/18
+    <tr><th>module      <td>Process Management           <th>date                <td>2014/2/18
     <tr> <th>pattern             <td colspan="3">access without synchronization   
     <tr> <th> description <td colspan="3">Currently, there's nothing preventing cgroup_enable_task_cg_lists()
 from missing set PF_EXITING and race against cgroup_exit().  Depending
@@ -346,7 +346,7 @@ visible.
       <tr><td colspan="4"> <h4> #23 </h4>
     <tr><th> <a name="c23" id="c23"></a> commit id <td>c291ee622165cb2c8d4e7af63fffd499354a23be
         <th>kernel version      <td>3.12.37   
-    <tr><th>module      <td>Driver           <th>date                <td>2014/12/13
+    <tr><th>module      <td>Process Management           <th>date                <td>2014/12/13
     <tr> <th>pattern             <td colspan="3">use before initialization   
     <tr> <th> description <td colspan="3">Since the rework of the sparse interrupt code to actually free the
 unused interrupt descriptors there exists a race between the /proc
@@ -359,7 +359,7 @@ descriptor.
       <tr><td colspan="4"> <h4> #24 </h4>
     <tr><th> <a name="c24" id="c24"></a> commit id <td>b72c186999e689cb0b055ab1c7b3cd8fffbeb5ed
         <th>kernel version      <td>3.14.41   
-    <tr><th>module      <td>Driver           <th>date                <td>2015/4/17
+    <tr><th>module      <td>Process Management           <th>date                <td>2015/4/17
     <tr> <th>pattern             <td colspan="3">use after free   
     <tr> <th> description <td colspan="3">ptrace_resume() is called when the tracee is still __TASK_TRACED.  We set
 tracee->exit_code and then wake_up_state() changes tracee->state.  If the
@@ -372,7 +372,7 @@ wrongly looks like another report from tracee.
       <tr><td colspan="4"> <h4> #25 </h4>
     <tr><th> <a name="c25" id="c25"></a> commit id <td>91b57191cfd152c02ded0745250167d0263084f8
         <th>kernel version      <td>3.12.36   
-    <tr><th>module      <td>Driver           <th>date                <td>2014/12/3
+    <tr><th>module      <td>Memory Management           <th>date                <td>2014/12/3
     <tr> <th>pattern             <td colspan="3">access with improper synchronization   
     <tr> <th> description <td colspan="3">In some android devices, there will be a "divide by zero" exception.
 vmpr->scanned could be zero before spin_lock(&vmpr->sr_lock).
