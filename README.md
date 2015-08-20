@@ -7,7 +7,7 @@ Data races are increasingly seen as concurrency bugs and they are difficult to r
 <tr><td>
   Jianjun Shi (Beijing Institute of Technology) 
 <tr><td>
-  Weixing Ji (Beijing Institute of Technology) <jwx@bit.edu.cn>
+  Weixing Ji (Beijing Institute of Technology) &lt;jwx@bit.edu.cn&gt;
 </table>
   
 <h2>References:</h2>
