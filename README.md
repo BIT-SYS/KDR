@@ -307,7 +307,7 @@ no synchronisation between lockd() and lockd_up() to guarantee that this
 is the case.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
-    <td colspan="3"><image src="https://github.com/BIT-SYS/KDR/blob/master/Images/06bed7d18c2c07b3e3eeadf4bd357f6e806618cc.png">
+    <td colspan="3"><image src="https://raw.githubusercontent.com/BIT-SYS/KDR/master/Images/06bed7d18c2c07b3e3eeadf4bd357f6e806618cc.png">
 
 
      <tr><td colspan="4"> <h4> #20 </h4>
