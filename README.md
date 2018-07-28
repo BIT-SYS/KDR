@@ -2,6 +2,9 @@
 Data races are increasingly seen as concurrency bugs and they are difficult to reproduce and diagnose in parallel programs. Linux kernel is a concurrency-intensive and large-scale software system that contains million lines of code contributed by more than 10 thousands programmers. High thread-level parallelism and non-deterministic thread interleaving are most prone to race conditions. We conducted a thorough investigation of data races reported on Linux kernels in recent 5 years. The investigation was performed by reviewing bug reports in Kernel Bug Tracker and studying kernel source code revision logs in Linux Kernel Organization. The results show that there are about 500 kernel data races reported and fixed in recent 5 years, and the file system and drivers among all modules have a much higher percentage of race conditions than other modules. Race distribution over years, modules and kernel versions are also reported according to our statistical results. We conducted a case-by-case study on some selected data races and summed up 4 data race patterns. Our analysis results should be of interest to researchers and engineers who are committed to kernel data race detection and kernel development.
 <br>
 
+If this is useful for you, please cite our paper:
+Shi, Jianjun & Ji, Weixing & Wang, Yizhuo & Huang, Lifu & Guo, Yunkun & Shi, Feng. (2018). <b>Linux Kernel Data Races in Recent 5 Years</b>. Chinese Journal of Electronics. 27. 556-560. 10.1049/cje.2018.03.015. 
+
 <!--h2>Contact information: </h2>
 <table>
 <tr><td>
