@@ -85,8 +85,9 @@ Shi, Jianjun & Ji, Weixing & Wang, Yizhuo & Huang, Lifu & Guo, Yunkun & Shi, Fen
     1:dd if=/dev/sdb of=/dev/null
     2:while true;do echo noop > scheduler;echo deadline > scheduler;done
     <tr><th>Interleaving 
-    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/4531815/8325292/c77a173e-1a8a-11e5-9ddd-7f7b8a3ac0a5.png">
-    
+    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/4531815/8325292/c77a173e-1a8a-11e5-9ddd-7f7b8a3ac0a5.png"></table>
+      
+<table>
     <tr><td colspan="4"> <h4> #2 </h4>
     <tr><th> <a name="c2" id="c2"></a> commit id <td>8265981bb439f3ecc5356fb877a6c2a6636ac88a
         <th>kernel version      <td>3.0.38    
@@ -96,8 +97,9 @@ Shi, Jianjun & Ji, Weixing & Wang, Yizhuo & Huang, Lifu & Guo, Yunkun & Shi, Fen
 lock held.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
-    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8777996/e5301c6c-2f2d-11e5-9c20-b5067b0ac989.png">
+    <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8777996/e5301c6c-2f2d-11e5-9c20-b5067b0ac989.png"></table>
     
+<table>
     <tr><td colspan="4"> <h4> #3 </h4>
     <tr><th> <a name="c3" id="c3"></a> commit id <td>ce73ec6db47af84d1466402781ae0872a9e7873c
         <th>kernel version      <td>3.0.38    
@@ -111,7 +113,9 @@ forever in vdso code.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8778028/14832356-2f2e-11e5-8542-ed5b210cd26e.png">
-    
+</table>  
+      
+<table>
      <tr><td colspan="4"> <h4> #4 </h4>
     <tr><th> <a name="c4" id="c4"></a> commit id <td>2febc839133280d5a5e8e1179c94ea674489dae2
         <th>kernel version      <td>3.10.60    
@@ -124,6 +128,7 @@ can crash the host kernel.
     <tr> <th> reproduce   <td colspan="3">
     <tr><th>interleaving 
     <td colspan="3"><image src="https://cloud.githubusercontent.com/assets/12931943/8778034/247a667a-2f2e-11e5-9ef6-a831beb2591b.png">
+</table>
     
      <tr><td colspan="4"> <h4> #5 </h4>
     <tr><th> <a name="c5" id="c5"></a> commit id <td>6dbf79e7164e9a86c1e466062c48498142ae6128
